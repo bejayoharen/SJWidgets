@@ -4,3 +4,8 @@
 *.jar
 *.war
 *.ear
+
+#swap files
+*.swp
+
+._DSStore
