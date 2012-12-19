@@ -83,32 +83,34 @@ Once you are setup, you can start to define some widgets. Here are some examples
       <Preferred w="30" h="40" /> <!-- Sets the preferred layout size. -->
       <!--  layout of this component within parent -->
       <Alignment x=".5" y=".5" /> <!-- this is useful for hbox and vbox layout. You can use just x or just y. -->
-   </Widget>
-   <Widget id="sample label">
-       <property key="horizontal alignment">right</property>
-       <property key="text">email:</property>
-       <property key="border type">empty</property>
-       <property key="border size">0 3</property>
+    </Widget>
+    <Widget id="sample label">
+      <property key="horizontal alignment">right</property>
+      <property key="text">email:</property>
+      <property key="border type">empty</property>
+      <property key="border size">0 3</property>
     </Widget>
     <Widget id="sample with icon">
-        <property key="background">transparent</property>
-        <property key="foreground">Indaba Blue</property>
-        <property key="icon">sessionSelection/mix.png</property>
+      <property key="background">transparent</property>
+      <property key="foreground">Indaba Blue</property>
+      <property key="icon">sessionSelection/mix.png</property>
     </Widget>
-   <Widget id="sample with multiple icons">
-       <property key="icon">transport/metronome_off.png</property>
-       <property key="selected icon">transport/metronome_on.png</property>
-   </Widget>
-   <Widget id="sample with gradient">
+    <Widget id="sample with multiple icons">
+      <property key="icon">transport/metronome_off.png</property>
+      <property key="selected icon">transport/metronome_on.png</property>
+    </Widget>
+    <Widget id="sample with gradient">
       <property key="font">lucida-regular-7</property>
       <property key="gradient top">#717171</property>
       <property key="gradient bottom">#393939</property>
-   </Widget>
+    </Widget>
+
+For properties that are repeated in multiple widget IDs, it is possible to use a "class", which is not yet documented.
 
 
 #Java Code#
 
-Now that your looks are defines, you need to write some Java Code. First, before creating any widgets, you
+Now that your looks are defined, you need to write some Java Code. First, before creating any widgets, you
 need to load the widget library:
 
     WidgetUtil.loadDescriptions("resources/WidgetDescriptions.xml");
