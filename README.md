@@ -3,8 +3,7 @@ SJWidgets
 
 A Swing Compatible Widget Library for Java
 
-What it Does
-------------
+#What it Does#
 
 SJWidgets is designed to make it easier to use swing to make beautiful UIs. Plugable Look and Feels does
 not accomplish this task because you cannot easilly specify the look of each widget; instead it is designed
@@ -14,20 +13,19 @@ SJWidgets lets you fine-tune the look of each widget outside of code, so that yo
 easilly make your UI's look like the design spec using XML rather than code. Like HTML/Javascript/CSS, this
 helps to separate functionality from design.
 
-How it Works
-------------
+#How it Works#
 
 SJWidgets are just like Swing widgets, excet with an additional argument in the constructor: a widgetID
 argument. If non-null, this ID (an arbitrary string), is used to define the look of that individual widget.
 For example, instead of using this code:
 
-   JButton b = new JButton( "Push Me" );
-   b.setBorder(...);
-   b.setIcon(...);
+    JButton b = new JButton( "Push Me" );
+    b.setBorder(...);
+    b.setIcon(...);
 
 You might do something like this:
 
-   SJButton b = new SJButton( "Pushable Button" );
+    SJButton b = new SJButton( "Pushable Button" );
 
 and define the border, label text and icon in the XML file with the ID "Pushable Button".
 
@@ -36,8 +34,7 @@ in the XML files. Although this violates separation of funtion and design, so fa
 too much of a hinderence.
 
 
-WidgetDescriptions.xml
-----------------------
+#WidgetDescriptions.xml#
 
 Usually you will define the look and feel of each widget in a single file called WidgetDescriptions.xml.
 You can call this file whatever you like, and you can have multiple files if just having one is too
@@ -48,7 +45,7 @@ you can simply use a standard web color hex triplet like #de30ff, but you can al
 that you can refer to by name, which is handy for UIs that reuse colors, or if you want to experiment with
 a color scheme. This also makes it easier to work with transparencies.
 
-  <Widgets>
+    <Widgets>
       <Colors>
          <Color name="transparent" alpha="0">#000000</Color>
          <Color name="light blue">#D2E8FF</Color>
@@ -109,36 +106,35 @@ Once you are setup, you can start to define some widgets. Here are some examples
    </Widget>
 
 
-Java Code
----------
+#Java Code#
 
 Now that your looks are defines, you need to write some Java Code. First, before creating any widgets, you
 need to load the widget library:
 
-   WidgetUtil.loadDescriptions("resources/WidgetDescriptions.xml");
+    WidgetUtil.loadDescriptions("resources/WidgetDescriptions.xml");
 
 Then, once loaded, you can create your widgets using the IDs defined in the WidgetDescriptions.xml. Note that
 if the ID is not found, your app will crash.
 
-   SJLabel b = new SJLabel( "sample label" );
+    SJLabel b = new SJLabel( "sample label" );
 
 
-Help
-----
+#Help#
 
 There is an extensive built-in help system as well, which is not yet documented.
 
 
-Examples
---------
+#Examples#
 
 An earlier version of SJWidgets was used in Indaba Music's Mantis: http://www.indabamusic.com/labs
+The current version will be used in the upcoming version of http://www.xonami.com
 
 
-License
--------
+#License#
 
 SJ Widgets is (c) Indaba Music and Bjorn Roche
 
 A license has not yet been chosen for SJWidgets. It will probably be BSD or similar. If this concerns you,
 you may want to hold off for now.
+
+
