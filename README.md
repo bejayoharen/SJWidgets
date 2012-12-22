@@ -13,9 +13,23 @@ SJWidgets lets you fine-tune the look of each widget outside of code, so that yo
 easilly make your UI's look like the design spec using XML rather than code. Like HTML/Javascript/CSS, this
 helps to separate functionality from design.
 
+#Status#
+
+SJWidgets has been used in production code and is definately ready for production use. It was originally
+written for the XO Wave Digital audio workstation, developed further for Indaba Music's Mantis Web Based
+Digital Audio Workstation, and now developed further, again, for Xonami. However, there
+are two main issues:
+
+1. **Documentation is sparse at best.** I'm sorry to say this is hands down the worst documented code
+I've ever written :(. However, because SJWidget classes extend swing widgets, once you understnad
+swing and the concepts outlined here, you probably won't need any further documentation.
+
+2. **Some code may not be actively tested.** Features that aren't actively used right now may not be tested,
+either.
+
 #How it Works#
 
-SJWidgets are just like Swing widgets, excet with an additional argument in the constructor: a widgetID
+SJWidgets are just like Swing widgets (in fact, they ARE swing widgets), excet with an additional argument in the constructor: a widgetID
 argument. If non-null, this ID (an arbitrary string), is used to define the look of that individual widget.
 For example, instead of using this code:
 
@@ -38,12 +52,19 @@ too much of a hinderence.
 
 Usually you will define the look and feel of each widget in a single file called WidgetDescriptions.xml.
 You can call this file whatever you like, and you can have multiple files if just having one is too
-unweildy. Each of these files contains a single <Widgets /> element.
+unweildy -- it can be especially helpful to divide your UI into multiple files if it is complex
+an contains many different widgets. Each of these files contains a single <Widgets /> element.
 
-Anywhere where you need a color
-you can simply use a standard web color hex triplet like #de30ff, but you can also predefine some colors
-that you can refer to by name, which is handy for UIs that reuse colors, or if you want to experiment with
-a color scheme. This also makes it easier to work with transparencies.
+One time for each application, you may define a <DisableFocus /> element, which can contain the text "true"
+or "false" (the default is "false"). This is useful for UIs, such as audio applications, where the standard,
+default keyboard navigation usually offered simply doesn't make sense.
+
+Two other elements which act globally, and should usually appear only once (and first), are <Colors /> and
+<Fonts />. 
+
+The <Colors /> element is useful for defining colors by name, so that you don't have to use full hex codes
+like #de30ff later.  It is also useful for experimenting with color schemes. This is especially useful for UIs
+that reuse a given set of colors.
 
     <Widgets>
       <Colors>
@@ -56,13 +77,26 @@ a color scheme. This also makes it easier to work with transparencies.
          <Color name="shading color" alpha=".7">#101010</Color>
       </Colors>
 
-You'll also probably want to define a default font. If you like, you can define custom fonts as well.
+The <Fonts /> element lets you define a default font, which is a good idea, and it also lets you import custom fonts
+as well.
 
       <Fonts>
           <DefaultFont>Lucida-regular-12</DefaultFont>
           <!-- custom fonts are decoded as fontname-size or fontname size. built-ins are font-style-size -->
           <CustomFont name="digital_7_mono">digital-7_mono.ttf</CustomFont>
       </Fonts>
+
+If you are planning to use SJOptionPanes, you will also want to setup the look of the Option Panes using the <OptionPane />
+element. This defines the IDs of widgets to use when displaying different kinds of messages.
+
+      <OptionPane>
+           <property key="error label">Option Pane: Error Label</property>
+           <property key="information label">Option Pane: Information Label</property>
+           <property key="warnging label">Option Pane: Warning Label</property>
+           <property key="question label">Option Pane: Question Label</property>
+           <property key="basic label">Option Pane: Basic Label</property>
+      </OptionPane>
+
 
 Once you are setup, you can start to define some widgets. Here are some examples:
 
@@ -121,9 +155,15 @@ if the ID is not found, your app will crash.
     SJLabel b = new SJLabel( "sample label" );
 
 
-#Help#
+#Help System#
 
 There is an extensive built-in help system as well, which is not yet documented.
+
+
+#Building#
+
+Build with ant. To use, you will need the resulting jar from dist and the files in lib.
+You can also compile the example with "ant example" and even run the example with "ant runex"
 
 
 #Examples#
@@ -131,6 +171,9 @@ There is an extensive built-in help system as well, which is not yet documented.
 An earlier version of SJWidgets was used in Indaba Music's Mantis: http://www.indabamusic.com/labs
 The current version will be used in the upcoming version of http://www.xonami.com
 
+#Contributors#
+
+Bjorn Roche and Howard Shih are the primary contributors to this project.
 
 #License#
 
@@ -139,4 +182,7 @@ SJ Widgets is (c) Indaba Music and Bjorn Roche
 A license has not yet been chosen for SJWidgets. It will probably be BSD or similar. If this concerns you,
 you may want to hold off for now.
 
+#Dependencies#
 
+SJWidgets depends on BrowserLauncher2 and JDom 1.1 (both included). You may also need felix (also included) if you
+use the felix features which, at this time, are experimental.

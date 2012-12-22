@@ -1,0 +1,64 @@
+<project name="SJWidgets" default="dist" basedir=".">
+    <description>
+        Builds the SJWidget toolkit, a Swing extension.
+    </description>
+  <!-- set global properties for this build -->
+  <property name="src" location="src"/>
+  <property name="build" location="bin"/>
+  <property name="dist"  location="dist"/>
+  <property name="version" value="0.1pre"/>
+
+  <!-- jars/dependent libraries -->
+  <path id="jars.list">
+    <fileset dir="libs">
+      <include name="*.jar"/>
+    </fileset>
+  </path>
+  <property name="jars" refid="jars.list" />
+
+  <!-- targets -->
+
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build}"/>
+  </target>
+
+  <target name="compile" depends="init" description="compile the source" >
+    <!-- Compile the java code from ${src} into ${build} -->
+    <javac srcdir="${src}" debug="true" debuglevel="lines,source" destdir="${build}" source="1.5" target="1.5" includeantruntime="false"
+	classpath="${classpath}:${jars}" />
+  </target>
+
+  <target name="dist" depends="compile" description="generate the distribution" >
+    <!-- Create the distribution directory -->
+    <mkdir dir="${dist}"/>
+
+    <!-- Put class files from ${build} into the jar file -->
+    <jar jarfile="${dist}/SJWidgets-${version}.jar"
+         basedir="${build}"
+         includes="**/*.class" />
+    <!-- <jar jarfile="${dist}/SJWidgets-${DSTAMP}.jar"
+         basedir="${build}"
+         manifest="MANIFEST.MF"
+         includes="**/*.class,**/*.png,**/*.props" /> -->
+  </target>
+
+  <target name="examples" depends="dist" description="Compiles examples" >
+    <mkdir dir="examples-bin" />
+    <echo>${dist}/SJWidgets-${version}.jar</echo>
+    <javac srcdir="examples" debug="true" destdir="examples-bin" includeantruntime="false" classpath="${classpath}:${jars}:${dist}/SJWidgets-${version}.jar" />
+  </target>
+
+  <target name="runex" depends="examples" description="runs examples" >
+    <java classname="SimpleExample" fork="true" dir="examples" classpath="examples:examples-bin:${classpath}:${jars}:${dist}/SJWidgets-${version}.jar" />
+  </target>
+
+  <target name="clean" description="clean up" >
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+    <delete dir="examples-bin"/>
+  </target>
+</project>
