@@ -180,8 +180,9 @@ Bjorn Roche and Howard Shih are the primary contributors to this project.
 
 SJ Widgets is (c) Indaba Music and Bjorn Roche
 
-A license has not yet been chosen for SJWidgets. It will probably be BSD or similar. If this concerns you,
-you may want to hold off for now.
+This project is licensed under a BSD-style license. See COPYING.txt for details.
+
+Note that some files in the examples folder and some of the dependencies may use other licenses.
 
 #Dependencies#
 
