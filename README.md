@@ -20,12 +20,12 @@ written for the XO Wave Digital audio workstation, developed further for Indaba 
 Digital Audio Workstation, and now developed further, again, for Xonami. However, there
 are two main issues:
 
-1. **Documentation is sparse at best.** I'm sorry to say this is hands down the worst documented code
-I've ever written :(. However, because SJWidget classes extend swing widgets, once you understnad
+1. **Documentation is sparse** The Javadocs for this code is almost nonexistant.
+However, because SJWidget classes extend swing widgets, once you understnad
 swing and the concepts outlined here, you probably won't need any further documentation.
 
 2. **Some code may not be actively tested.** Features that aren't actively used right now may not be tested,
-either.
+either, however, the code, in general, is highly functional.
 
 #How it Works#
 
