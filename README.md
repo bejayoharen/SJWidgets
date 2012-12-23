@@ -141,6 +141,7 @@ Once you are setup, you can start to define some widgets. Here are some examples
 
 For properties that are repeated in multiple widget IDs, it is possible to use a "class", which is not yet documented.
 
+Properties are documented in PROPERTIES.md
 
 #Java Code#
 
@@ -157,7 +158,7 @@ if the ID is not found, your app will crash.
 
 #Help System#
 
-There is an extensive built-in help system as well, which is not yet documented.
+There is a built-in help system as well, which is not yet documented.
 
 
 #Building#
