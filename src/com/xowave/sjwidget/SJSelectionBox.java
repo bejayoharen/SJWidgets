@@ -74,7 +74,7 @@ public class SJSelectionBox extends SJButton implements SJWidget, ListDataListen
 		
 		super.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				popupMenu.show( SJSelectionBox.this, SJSelectionBox.this, 0, getHeight() );
+				popupMenu.show( SJSelectionBox.this, SJSelectionBox.this );
 			}
 		});
 

@@ -52,6 +52,10 @@ public class SimpleExample
       p.add( b );
       p.add( new SJLabel( "label with custom font" ) );
 
+      p.add( SJPanel.createVerticalFiller( 5 ) );
+
+      p.add( new SJSelectionBox( "Selection Box", "Selection Box Popup", "Selection Box Label", new String[] {"Item 1", "Item 2", "Item 3"} ) );
+
       frame.setContentPane( p );
       frame.pack();
       frame.setVisible(true);

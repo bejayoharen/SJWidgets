@@ -69,4 +69,31 @@
   <property key="border size">3</property>
   <Alignment x=".5" />
 </Widget>
+<!-- Selection Box -->
+<Widget id="Selection Box">
+  <property key="foreground">light blue</property>
+  <property key="background">#000000</property>
+  <property key="border type">solid</property>
+  <property key="border size">3</property>
+  <property key="border color">light blue</property>
+  <minimum width="100" hight="30" />
+  <maximum width="100" hight="30" />
+  <preferred width="100" hight="30" />
+  <Alignment x=".5" />
+</Widget>
+<Widget id="Selection Box Popup">
+  <property key="foreground">light blue</property>
+  <property key="background">#000000</property>
+  <property key="border type">solid</property>
+  <property key="border size">3</property>
+  <property key="border color">light blue</property>
+  <Alignment x=".5" />
+</Widget>
+<Widget id="Selection Box Label">
+  <property key="foreground">light blue</property>
+  <property key="border type">solid</property>
+  <property key="border size">1</property>
+  <property key="border color">#ff0000</property>
+  <Alignment x=".5" />
+</Widget>
 </Widgets>

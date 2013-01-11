@@ -103,7 +103,7 @@ class SJSelectionBoxPopup extends SJPanel implements WindowListener, ActionListe
 		});
 	}
 
-	public void show( SJSelectionBox selBox, Component parent, int x, int y ) {
+	public void show( SJSelectionBox selBox, Component parent ) {
 		// we can't use regular pop-ups, b/c they don't support focus.
 		// create our window:
 		if( w != null )
@@ -133,9 +133,6 @@ class SJSelectionBoxPopup extends SJPanel implements WindowListener, ActionListe
 		
 		//figure our dimensions and stuff:
 		Dimension d = getPreferredSize();
-		Point p = parent.getLocationOnScreen();
-		p.y += y ;
-		p.x += x ;
 		if( d.height > 300 ) {
 			scroller = new SJScrollPane( this, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER, null );
 			d.height = 300;
@@ -143,6 +140,13 @@ class SJSelectionBoxPopup extends SJPanel implements WindowListener, ActionListe
 			cp.add( scroller );
 		} else {
 			cp.add( this );
+		}
+		Point p = parent.getLocationOnScreen();
+		int y = parent.getHeight();
+		if( p.y + y + d.height > parent.getGraphicsConfiguration().getBounds().getMaxY() ) {
+			p.y -= d.height;
+		} else {
+			p.y += y;
 		}
 //		w.setAlwaysOnTop(true);
 		w.pack();
