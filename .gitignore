@@ -1,9 +1,9 @@
 *.class
 
 # Package Files #
-*.jar
 *.war
 *.ear
+/dist
 
 #swap files
 *.swp
