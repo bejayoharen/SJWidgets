@@ -10,7 +10,7 @@
  *
  */
 
-package com.xowave.examples;
+package com.xowave.sjwidget.examples;
 
 import com.xowave.sjwidget.*;
 import javax.swing.*;
