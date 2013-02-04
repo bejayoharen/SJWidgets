@@ -16,6 +16,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 import javax.swing.text.Document;
 
+import com.xowave.sjwidget.util.BackgroundPainter;
+import com.xowave.sjwidget.util.WidgetUtil;
+
 /**
  * @author bjorn
  *

@@ -23,9 +23,18 @@ import java.awt.event.WindowEvent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
+import com.xowave.sjwidget.util.BackgroundPainter;
+import com.xowave.sjwidget.util.WidgetUtil;
 import com.xowave.util.Environment;
 
 /**
+ * This class behaves like a JDialog except for a few things:
+ * <ul>
+ * <li> Some bugs are fixed/worked around, such as bug 7240026 on macs
+ * <li> You can assign appearace features to the root pane with a widget ID
+ * <li> escape and command-w (mac only) should work as expected.
+ * </ul>
+ * 
  * @author bjorn
  *
  */

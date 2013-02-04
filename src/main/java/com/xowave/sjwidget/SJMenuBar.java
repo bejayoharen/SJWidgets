@@ -17,6 +17,9 @@ import java.awt.Graphics;
 
 import javax.swing.JMenuBar;
 
+import com.xowave.sjwidget.util.BackgroundPainter;
+import com.xowave.sjwidget.util.WidgetUtil;
+
 /**
  * SJMenuBar
  * An improved JMenuBar. the built-in JMenuBar doesn't respect color or font requests, so this will do that.

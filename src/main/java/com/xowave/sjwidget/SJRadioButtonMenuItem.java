@@ -23,6 +23,8 @@ import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.JRadioButtonMenuItem;
 
+import com.xowave.sjwidget.util.BackgroundPainter;
+import com.xowave.sjwidget.util.WidgetUtil;
 import com.xowave.util.UIUtil;
 import com.xowave.util.XColor;
 

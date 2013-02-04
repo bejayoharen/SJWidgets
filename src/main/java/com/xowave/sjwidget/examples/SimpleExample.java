@@ -13,6 +13,8 @@
 package com.xowave.sjwidget.examples;
 
 import com.xowave.sjwidget.*;
+import com.xowave.sjwidget.util.WidgetUtil;
+
 import javax.swing.*;
 
 import java.io.IOException;
@@ -29,7 +31,7 @@ public class SimpleExample
    }
    private static void createAndShowGUI() {
       try {
-         WidgetUtil.loadDescriptions("resources/WidgetDescriptions.xml");
+         WidgetUtil.loadDescriptions("examples/WidgetDescriptions.xml");
       } catch( IOException ioe ) {
          throw new RuntimeException( ioe );
       }

@@ -17,6 +17,9 @@ import java.awt.Graphics;
 import javax.swing.Icon;
 import javax.swing.JToggleButton;
 
+import com.xowave.sjwidget.util.BackgroundPainter;
+import com.xowave.sjwidget.util.WidgetUtil;
+
 /**
  * @author bjorn
  *

@@ -19,6 +19,9 @@ import java.util.Vector;
 import javax.swing.JList;
 import javax.swing.ListModel;
 
+import com.xowave.sjwidget.util.BackgroundPainter;
+import com.xowave.sjwidget.util.WidgetUtil;
+
 /**
  * @author bjorn
  *

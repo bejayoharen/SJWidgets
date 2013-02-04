@@ -20,6 +20,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JPopupMenu;
 
+import com.xowave.sjwidget.util.BackgroundPainter;
+import com.xowave.sjwidget.util.WidgetUtil;
+
 public class SJPopupMenu extends JPopupMenu implements SJWidget {
 
 	BackgroundPainter backgroundPainter;

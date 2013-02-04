@@ -3,7 +3,14 @@
 # Package Files #
 *.war
 *.ear
-/dist
+
+# build stuff #
+/target
+
+#eclipse files
+.classpath
+.project
+.settings
 
 #swap files
 *.swp

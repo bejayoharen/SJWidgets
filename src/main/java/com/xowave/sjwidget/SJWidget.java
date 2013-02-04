@@ -14,6 +14,8 @@ package com.xowave.sjwidget;
 
 import java.awt.Color;
 
+import com.xowave.sjwidget.util.BackgroundPainter;
+
 public interface SJWidget {
 	public static final Color TRANSPARENT = new Color( 0, 0, 0, 0 );
 	public static final String WIDGET_TEXT_KEY = "Widget Text";

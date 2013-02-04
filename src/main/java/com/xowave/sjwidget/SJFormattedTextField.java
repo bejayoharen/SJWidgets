@@ -17,6 +17,9 @@ import java.text.Format;
 
 import javax.swing.JFormattedTextField;
 
+import com.xowave.sjwidget.util.BackgroundPainter;
+import com.xowave.sjwidget.util.WidgetUtil;
+
 /**
  * @author bjorn
  *

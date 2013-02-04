@@ -12,20 +12,23 @@
 
 package com.xowave.sjwidget;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 
-import javax.swing.BorderFactory;
 import javax.swing.JApplet;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * Adds lighbox (and other standard SJWidget) capabilities to JApplet.
+ * 
+ * @author bjorn
+ *
+ */
 public class SJApplet extends JApplet implements SJRootPaneContainer {
 	Component originalGlassPane = getGlassPane();
 	boolean showingLightbox = false;
 
+	@Override
 	public void showLightbox(SJLightbox sjLightbox) {
 		if( showingLightbox )
 			throw new RuntimeException("Can only show one lightbox at a time.");
@@ -50,6 +53,7 @@ public class SJApplet extends JApplet implements SJRootPaneContainer {
 		p.setVisible(true);
 	}
 
+	@Override
 	public void lightboxComplete(SJLightbox sjLightbox) {
 		getGlassPane().setVisible(false);
 		sjLightbox.setToSJRootPaneContainer(null);

@@ -25,7 +25,7 @@ However, because SJWidget classes extend swing widgets, once you understnad
 swing and the concepts outlined here, you probably won't need any further documentation.
 
 2. **Some code may not be actively tested.** Features that aren't actively used right now may not be tested,
-either, however, the code, in general, is highly functional.
+either. However, much of the code is actually highly functional.
 
 #How it Works#
 
@@ -53,7 +53,7 @@ too much of a hinderence.
 Usually you will define the look and feel of each widget in a single file called WidgetDescriptions.xml.
 You can call this file whatever you like, and you can have multiple files if just having one is too
 unweildy -- it can be especially helpful to divide your UI into multiple files if it is complex
-an contains many different widgets. Each of these files contains a single <Widgets /> element.
+and contains many different widgets. Each of these files contains a single <Widgets /> element.
 
 One time for each application, you may define a <DisableFocus /> element, which can contain the text "true"
 or "false" (the default is "false"). This is useful for UIs, such as audio applications, where the standard,
@@ -141,7 +141,7 @@ Once you are setup, you can start to define some widgets. Here are some examples
 
 For properties that are repeated in multiple widget IDs, it is possible to use a "class", which is not yet documented.
 
-Properties are documented in PROPERTIES.md
+Properties are documented in doc/PROPERTIES.md
 
 #Java Code#
 
@@ -163,8 +163,13 @@ There is a built-in help system as well, which is not yet documented.
 
 #Building#
 
-Build with ant. To use, you will need the resulting jar from dist and the files in lib.
-You can also compile the example with "ant example" and even run the example with "ant runex"
+Build with maven. To build and run the simple tests, use:
+
+mvn compile exec:exec -Dsimpletest
+
+To build and run the table test, use:
+
+mvn compile exec:exec -Dtabletest
 
 
 #Examples#
@@ -186,5 +191,5 @@ Note that some files in the examples folder and some of the dependencies may use
 
 #Dependencies#
 
-SJWidgets depends on BrowserLauncher2 and JDom 1.1 (both included). You may also need felix (also included) if you
+SJWidgets depends on BrowserLauncher2, which is included, and JDom 1.1. You may also need felix (also included) if you
 use the felix features which, at this time, are experimental.

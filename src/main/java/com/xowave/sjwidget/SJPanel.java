@@ -21,6 +21,9 @@ import java.awt.LayoutManager;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
+import com.xowave.sjwidget.util.BackgroundPainter;
+import com.xowave.sjwidget.util.WidgetUtil;
+
 /**
  * @author bjorn
  *

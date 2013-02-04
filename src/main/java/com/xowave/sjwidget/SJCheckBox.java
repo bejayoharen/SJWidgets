@@ -25,7 +25,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 
-import com.xowave.sjwidget.help.HelpComponentRegistry;
+import com.xowave.sjwidget.util.BackgroundPainter;
+import com.xowave.sjwidget.util.WidgetUtil;
 
 /**
  * @author bjorn
@@ -35,14 +36,17 @@ public class SJCheckBox extends JCheckBox implements SJWidget, PropertyChangeLis
 	private BackgroundPainter backgroundPainter;
 	
 	/**
-	 * 
+	 * Like the equivalent JCheckBox Constructor with an additional argument: ID, which sets the widget ID.
+	 * @param ID the widget ID
 	 */
 	public SJCheckBox(String ID) {
 		setWidgetID( ID );
 	}
 
 	/**
-	 * @param icon
+	 * Like the equivalent JCheckBox Constructor with an additional argument: ID, which sets the widget ID.
+	 * @param icon the icon. set before the widget ID
+	 * @param ID the widget ID
 	 */
 	public SJCheckBox(Icon icon, String ID) {
 		super(icon);
@@ -50,7 +54,9 @@ public class SJCheckBox extends JCheckBox implements SJWidget, PropertyChangeLis
 	}
 
 	/**
-	 * @param text
+	 * Like the equivalent JCheckBox Constructor with an additional argument: ID, which sets the widget ID.
+	 * @param text the text. set before the widget ID.
+	 * @param ID the widget ID
 	 */
 	public SJCheckBox(String text, String ID) {
 		super(text);
@@ -58,36 +64,43 @@ public class SJCheckBox extends JCheckBox implements SJWidget, PropertyChangeLis
 	}
 
 	/**
-	 * @param a
+	 * Like the equivalent SJCheckBox Constructor with an additional argument: ID, which sets the widget ID.
+	 * @param a the initial action
+	 * @param ID the widget ID
 	 */
 	public SJCheckBox(Action a, String ID) {
 		super(a);
 		setWidgetID( ID );
 	}
-	
+	/**
+	 * Like the equivalent JCheckBox constructor except that the widget ID is retrieved from the SJAction.
+	 * @param a the initial action, which also provides a widget ID. When the ID of this action changes,
+	 * so does the ID of this button.
+	 */
 	public SJCheckBox(SJAction a) {
 		super(a);
 		setWidgetID( a.getWidgetID() );
 		a.addPropertyChangeListener(this);
 	}
-
 	/**
-	 * @param text
-	 * @param icon
+	 * Returns the current WidgetID associated with this button. May be null.
 	 */
-	public SJCheckBox(String text, Icon icon, String ID, HelpComponentRegistry hcr) {
-		super(text, icon);
-		setWidgetID( ID );
-	}
-
+	@Override
 	public String getWidgetID() {
 		return (String) this.getClientProperty(ID_KEY);
 	}
-	
+	/**
+	 * Returns the current widget class associated with this button. May be null.
+	 */
+	@Override
 	public String getWidgetClass() {
 		return (String) this.getClientProperty(CLASS_KEY);
 	}
-
+	/**
+	 * Sets the widget id associated with this widget to the given value. Any properties
+	 * bound to that ID, such as border, background, text, etc, will be changed as well.
+	 */
+	@Override
 	public SJCheckBox setWidgetID(String ID) {
 		setFocusable( WidgetUtil.allowFocus() );
 		setBackground( TRANSPARENT );
@@ -132,17 +145,32 @@ public class SJCheckBox extends JCheckBox implements SJWidget, PropertyChangeLis
 		}
 	}
 
+	@Override
 	public void setBackgroundPainter(BackgroundPainter bp) {
 		backgroundPainter = bp;
 	}
-	
+	/**
+	 * overrides the value returned by getWidgetText().
+	 * Generally, this function should not be used by clients;
+	 * rather it is used internally when setting the text
+	 * programatically because the widget's ID has changed.
+	 */
+	@Override
 	public void setWidgetText(String text) {
 		this.putClientProperty(WIDGET_TEXT_KEY, text);
 	}
+	/**
+	 * Retrieves the text originally associated with this
+	 * widget by the given ID. This is useful in cases where
+	 * the text in the widgets xml file is a template or
+	 * prefix.
+	 */
+	@Override
 	public String getWidgetText() {
 		return (String) this.getClientProperty(WIDGET_TEXT_KEY);
 	}
 
+	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		setWidgetID( ((SJAction)getAction()).getWidgetID() );
 	}

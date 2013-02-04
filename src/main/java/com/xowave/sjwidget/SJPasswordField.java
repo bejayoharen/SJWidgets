@@ -17,6 +17,9 @@ import java.awt.Graphics;
 import javax.swing.JPasswordField;
 import javax.swing.text.Document;
 
+import com.xowave.sjwidget.util.BackgroundPainter;
+import com.xowave.sjwidget.util.WidgetUtil;
+
 /**
  * 
  * 

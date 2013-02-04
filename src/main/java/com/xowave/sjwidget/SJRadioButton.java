@@ -23,6 +23,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
 
 import com.xowave.sjwidget.help.HelpComponentRegistry;
+import com.xowave.sjwidget.util.BackgroundPainter;
+import com.xowave.sjwidget.util.WidgetUtil;
 
 /**
  * @author bjorn

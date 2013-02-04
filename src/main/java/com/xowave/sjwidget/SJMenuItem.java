@@ -18,6 +18,9 @@ import java.awt.Graphics;
 import javax.swing.Action;
 import javax.swing.JMenuItem;
 
+import com.xowave.sjwidget.util.BackgroundPainter;
+import com.xowave.sjwidget.util.WidgetUtil;
+
 public class SJMenuItem extends JMenuItem implements SJWidget {
 	private final SJMenuPaintingDelegate delegate;
 

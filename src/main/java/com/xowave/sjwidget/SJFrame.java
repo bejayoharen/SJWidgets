@@ -18,6 +18,12 @@ import java.awt.event.MouseAdapter;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * Adds the ability to show lighboxes in JFrames.
+ * 
+ * @author bjorn
+ *
+ */
 public class SJFrame extends JFrame implements SJRootPaneContainer {
 	Component originalGlassPane = getGlassPane();
 	boolean showingLightbox = false;

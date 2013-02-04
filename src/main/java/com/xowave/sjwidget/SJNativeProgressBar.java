@@ -17,6 +17,9 @@ import java.awt.Graphics;
 import javax.swing.BoundedRangeModel;
 import javax.swing.JProgressBar;
 
+import com.xowave.sjwidget.util.BackgroundPainter;
+import com.xowave.sjwidget.util.WidgetUtil;
+
 /**
  * Slightly more attractive progress bar.
  *

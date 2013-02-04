@@ -23,6 +23,8 @@ import java.awt.event.InputEvent;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.JMenuItem;
+
+import com.xowave.sjwidget.util.BackgroundPainter;
 import com.xowave.util.UIUtil;
 import com.xowave.util.XColor;
 

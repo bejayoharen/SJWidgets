@@ -17,13 +17,19 @@ package com.xowave.sjwidget;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Insets;
-
 import javax.swing.Icon;
 import javax.swing.JLabel;
 
+import com.xowave.sjwidget.util.BackgroundPainter;
+import com.xowave.sjwidget.util.WidgetUtil;
+
 
 /**
+ * SJLabel is like a standard swing JLabel except that it allows you
+ * to set a widget ID (or assign one at construction).
+ * 
+ * This ID can be used to define features of the component, such as borders, background colors, icons and so on, in a separate XML file rather than code.
+ * 
  * @author bjorn
  *
  */
@@ -84,6 +90,7 @@ public class SJLabel extends JLabel implements SJWidget {
 	}
 
 	
+	@Override
 	public String getWidgetID() {
 		return (String) this.getClientProperty(ID_KEY);
 	}
@@ -93,10 +100,12 @@ public class SJLabel extends JLabel implements SJWidget {
 		super.setBackground(bg);
 	}
 	
+	@Override
 	public String getWidgetClass() {
 		return (String) this.getClientProperty(CLASS_KEY);
 	}
 
+	@Override
 	public SJLabel setWidgetID(String ID) {
 		setBackground( TRANSPARENT );
 		WidgetUtil.registerAndSetup(this, ID);
@@ -118,15 +127,18 @@ public class SJLabel extends JLabel implements SJWidget {
 		}
 	}
 
+	@Override
 	public void setBackgroundPainter(BackgroundPainter bp) {
 		if( bp != null )
 			setOpaque( getBackground().getAlpha() == 255 );
 		backgroundPainter = bp;
 	}
 	
+	@Override
 	public void setWidgetText(String text) {
 		this.putClientProperty(WIDGET_TEXT_KEY, text);
 	}
+	@Override
 	public String getWidgetText() {
 		return (String) this.getClientProperty(WIDGET_TEXT_KEY);
 	}

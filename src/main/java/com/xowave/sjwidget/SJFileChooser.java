@@ -27,6 +27,17 @@ import com.xowave.util.XFile;
 import java.io.*;
 import java.util.Vector;
 
+
+/**
+ * This class contains static functions that allow for opening and saving without having to
+ * write custom switches to do different behavior on the mac vs pc. It also works around some
+ * bugs.
+ * 
+ * You may want to use quaqua in addition to this.
+ * 
+ * @author bjorn
+ *
+ */
 public class SJFileChooser {
 	public static final int LOAD = FileDialog.LOAD;
 	public static final int SAVE = FileDialog.SAVE;
@@ -40,6 +51,13 @@ public class SJFileChooser {
 		lastDir = dir;
 	}
 
+	/** Allows the user to select multiple files to open.
+	 * 
+	 * @param parent the component to use for layout and modality.
+	 * @param title the title of the dialog.
+	 * @param mff an optional filter.
+	 * @return an array of files, or null if they cancelled.
+	 */
 	public static XFile[] showMultiFileOpenDialog(Component parent, String title, SJFileFilter mff) {
 		//use swing dialog as it supports multiFiles and folders
 		JFileChooser dialog = new JFileChooser();
@@ -116,12 +134,30 @@ public class SJFileChooser {
 		return ret;
 	}
 
+	/**
+	 * shows a save or open dialog.
+	 */
 	public static XFile showDialog(int type, Component parent, String title, SJFileFilter fnf ) {
 		return showDialog( type, parent, title, fnf, null );
 	}
+	/**
+	 * shows a save or open dialog.
+	 */
 	public static XFile showDialog(int type, Component parent, String title, SJFileFilter fnf, File initialFile) {
 		return showDialog( type, parent, title, fnf, initialFile, null, JFileChooser.FILES_ONLY  );
 	}
+	/**
+	 * shows a save or open dialog with all options.
+	 * 
+	 * @param type load or save?
+	 * @param parent parent component for layout
+	 * @param title the title of the dialog
+	 * @param fnf optional filter
+	 * @param initialFile which file are we initially open on?
+	 * @param accessory an accessory component to how in the dialog.
+	 * @param selectionMode directories, files or both?
+	 * @return the selected file or null if none was selected.
+	 */
 	public static XFile showDialog(int type, Component parent, String title, SJFileFilter fnf, File initialFile, final JComponent accessory, int selectionMode ) {
 		Window w = getParentWindow(parent);
 
@@ -241,7 +277,12 @@ public class SJFileChooser {
 		}
 		return w;
 	}
-	
+	/**
+	 * Useful utility function for creating a filter from an extension only.
+	 * 
+	 * @param extension the file extension to filter for. The filtering will be done on a case-insensitive basis.
+	 * @param description the description of the filter.
+	 */
 	public static SJFileFilter createSimpleFileFilter(final String extension, final String description) {
 		return new SJFileFilter() {
 			@Override

@@ -16,7 +16,15 @@ import java.awt.Graphics;
 
 import javax.swing.JComponent;
 
+import com.xowave.sjwidget.util.BackgroundPainter;
+import com.xowave.sjwidget.util.WidgetUtil;
+
 /**
+ * This is an extension of JComponent. This is useful for designing custom components, or if you
+ * want to do custom drawing using the drawing in your xml file as a starting point. You may use this
+ * like any other SJWidget, then overwrite paintComponent (if you want the background to be painted
+ * correctly, be sure to call super.paintComponent first!).
+ * 
  * @author bjorn
  *
  */

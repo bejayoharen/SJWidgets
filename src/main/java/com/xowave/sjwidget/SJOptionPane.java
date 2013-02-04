@@ -37,6 +37,8 @@ import javax.swing.event.EventListenerList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import com.xowave.sjwidget.util.WidgetUtil;
+
 /**
  * 
  * Replaces some of the most common functions in JOptionPane.

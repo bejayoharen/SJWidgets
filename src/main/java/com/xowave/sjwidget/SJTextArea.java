@@ -15,6 +15,9 @@ package com.xowave.sjwidget;
 import javax.swing.BorderFactory;
 import javax.swing.JTextArea;
 
+import com.xowave.sjwidget.util.BackgroundPainter;
+import com.xowave.sjwidget.util.WidgetUtil;
+
 /**
  * @author bjorn
  *

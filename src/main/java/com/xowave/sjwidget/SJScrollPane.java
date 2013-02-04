@@ -20,6 +20,9 @@ import java.awt.Point;
 import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
 
+import com.xowave.sjwidget.util.BackgroundPainter;
+import com.xowave.sjwidget.util.WidgetUtil;
+
 /**
  * @author bjorn
  *

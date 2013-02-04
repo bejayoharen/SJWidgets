@@ -14,6 +14,9 @@ package com.xowave.sjwidget;
 
 import javax.swing.JScrollBar;
 
+import com.xowave.sjwidget.util.BackgroundPainter;
+import com.xowave.sjwidget.util.WidgetUtil;
+
 /**
  * Extends Scrollbars.
  * 
