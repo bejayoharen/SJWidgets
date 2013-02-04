@@ -51,8 +51,11 @@
     <javac srcdir="examples" debug="true" destdir="examples-bin" includeantruntime="false" classpath="${classpath}:${jars}:${dist}/SJWidgets-${version}.jar" />
   </target>
 
-  <target name="runex" depends="examples" description="runs examples" >
+  <target name="runsimp" depends="examples" description="runs simple example" >
     <java classname="SimpleExample" fork="true" dir="examples" classpath="examples:examples-bin:${classpath}:${jars}:${dist}/SJWidgets-${version}.jar" />
+  </target>
+  <target name="runtable" depends="examples" description="runs table example" >
+    <java classname="TableExample" fork="true" dir="examples" classpath="examples:examples-bin:${classpath}:${jars}:${dist}/SJWidgets-${version}.jar" />
   </target>
 
   <target name="clean" description="clean up" >
