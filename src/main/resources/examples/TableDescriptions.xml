@@ -1,0 +1,39 @@
+<Widgets>
+  <Colors>
+     <Color name="transparent" alpha="0">#000000</Color>
+     <Color name="translucent" alpha=".5">#808080</Color>
+     <Color name="21 percent black" alpha=".21">#000000</Color>
+     <Color name="50 percent" alpha=".5">#808080</Color>
+     <Color name="shading color" alpha=".7">#101010</Color>
+  </Colors>
+
+ <Fonts>
+      <DefaultFont>Lucida-regular-12</DefaultFont>
+      <!-- custom fonts are decoded as fontname-size or fontname size. built-ins are font-style-size -->
+      <CustomFont name="digital_7_mono">fonts/digital-7-mono.ttf</CustomFont>
+  </Fonts>
+
+<Widget id="table cell">
+  <property key="horizontal alignment">right</property>
+  <property key="foreground">#333333</property>
+  <property key="gradient top">#eeeeee</property>
+  <property key="gradient bottom">#dddddd</property>
+  <property key="font">Lucida-REGULAR-11</property>
+  <property key="border type">solid</property>
+  <property key="border color">#eeeeee</property>
+  <property key="border size">1</property>
+  <Alignment x=".5" />
+  <nohelp />
+</Widget>
+<Widget id="table editor">
+  <property key="horizontal alignment">left</property>
+  <property key="foreground">#eeeeee</property>
+  <property key="background">#000000</property>
+  <property key="font">Lucida-REGULAR-11</property>
+  <property key="border type">solid</property>
+  <property key="border color">#000000</property>
+  <property key="border size">1</property>
+  <Alignment x=".5" />
+  <nohelp />
+</Widget>
+</Widgets>
