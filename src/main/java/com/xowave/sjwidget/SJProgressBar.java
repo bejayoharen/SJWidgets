@@ -38,8 +38,11 @@ import com.xowave.sjwidget.SJComponent;
 import com.xowave.util.XColor;
 
 /**
+ * This progress bar is coded from scratch and designed to fit more easily with custom design that might be used with
+ * SJWidgets. It also provides some additional convenience functions like the ability to set progress using a float.
+ * The progress bar can also be animated or non-animated depending on how simple or busy you want the progress bar to be.
+ * 
  * @author bjorn
- *
  */
 public class SJProgressBar extends SJComponent implements SwingConstants, ActionListener {
 	private static final boolean SINE = true;
@@ -91,7 +94,7 @@ public class SJProgressBar extends SJComponent implements SwingConstants, Action
 	}
 	
 	/**
-	 * 
+	 * Creates a new SJProgressBar with the given Widget ID
 	 */
 	public SJProgressBar(String ID) {
 		super(ID);
@@ -102,7 +105,7 @@ public class SJProgressBar extends SJComponent implements SwingConstants, Action
 	}
 
 	/**
-	 * @param newModel
+	 * Creates a new SJProgressBar with the given Widget ID and bounded Range Model.
 	 */
 	public SJProgressBar(BoundedRangeModel newModel, String ID) {
 		super(ID);
@@ -113,12 +116,11 @@ public class SJProgressBar extends SJComponent implements SwingConstants, Action
 	}
 
 	/**
-	 * @param min
-	 * @param max
+	 * Creates a new SJProgressBar with the given Widget ID, min and max. The value is initially set to min.
 	 */
 	public SJProgressBar(int min, int max, String ID) {
 		super(ID);
-		model = new DefaultBoundedRangeModel(min,min,min, max);
+		model = new DefaultBoundedRangeModel(min, 0, min, max);
 		model.addChangeListener( timer );
 		setup();
 		setWidgetID(ID);
@@ -137,8 +139,8 @@ public class SJProgressBar extends SJComponent implements SwingConstants, Action
 		return this;
 	}
 
-	BufferedImage wavy = null;
-	double lastVal = -1;
+	private BufferedImage wavy = null;
+	private double lastVal = -1;
 	@Override
 	public void paintComponent(Graphics gr) {
 		timer.check();
@@ -269,31 +271,51 @@ public class SJProgressBar extends SJComponent implements SwingConstants, Action
 		g.setColor(getForeground());
 	}
 	
-	boolean isIndeterminate = false;
-	boolean isAnimated = true;
+	private boolean isIndeterminate = false;
+	private boolean isAnimated = true;
 
+	/**
+	 * Draws an animation for the "completed" portion of
+	 * a progress bar until the progress is 100%. Defaults to true.
+	 */
 	public void setAnimated(boolean animated) {
 		isAnimated = animated;
 	}
+	/**
+	 * returns the current state of isAnimated.
+	 */
 	public boolean isAnimated() {
 		return isAnimated;
 	}
+	/**
+	 * Indeterminate mode indicates to the user that
+	 * an unknown amount of progress has been done.
+	 */
 	public void setIndeterminate(boolean indeterminate) {
 		isIndeterminate = indeterminate;
 	}
+	/**
+	 * returns the current indeterminate state.
+	 */
 	public boolean isIndeterminate() {
 		return isIndeterminate;
 	}
+	/**
+	 * The current maximum range.
+	 */
 	public void setMaximum( int newMaximum ) {
 		model.setMaximum(newMaximum);
 	}
+	/** The current minimum of the range */
 	public void setMinimum( int newMinimum ) {
 		model.setMinimum(newMinimum);
 	}
+	/** Sets the current value of the range. */
 	public void setValue( int newValue ) {
 		model.setValue(newValue);
 	}
-	/** use a value between 0 and 1. outside this range sets indeterminate. */
+	/** Sets the progress to the given value, which should be between 0 and 1 to indicate
+	 * in progress. outside this range sets indeterminate. */
 	public void setPercentValue( float f ) {
 		if( f > 1 || f < 0 ) {
 			setIndeterminate(true);
@@ -303,18 +325,30 @@ public class SJProgressBar extends SJComponent implements SwingConstants, Action
 			model.setValue( v );
 		}
 	}
+	/**
+	 * The current maximum range.
+	 */
 	public int getMaximum() {
 		return model.getMaximum();
 	}
+	/**
+	 * The current minimum range.
+	 */
 	public int getMinimum() {
 		return model.getMinimum();
 	}
+	/**
+	 * The current progress value as an integer between minimum and maximum.
+	 */
 	public int getValue() {
 		return model.getValue();
 	}
 	
 	/** returns a value between 0 and 1 indicating the amount of progress made.
-	 * Note that this is a bit of a misnomer as percent is between 0 and 100.
+	 * Note that this is a bit of a misnomer as percent is between 0 and 100 and
+	 * this is between 0 and 1. Also note that calling this after setPercentValue()
+	 * is not guaranteed to return the exact same value. If you need to store the
+	 * previously set value with high precision, do so on your own. 
 	 * */
 	double getPercentComplete() {
 		long span = model.getMaximum() - model.getMinimum();
@@ -324,11 +358,15 @@ public class SJProgressBar extends SJComponent implements SwingConstants, Action
 	}
 
 	@Override
+	/**
+	 * This is called internally to redraw at regular intervals as part of
+	 * animation drawing.
+	 */
 	public void actionPerformed(ActionEvent e) {
 		timer.check();
 		repaint();
 	}
-
+	
 	private boolean isTopLevelAnsestorVisible() {
 		return getTopLevelAncestor() != null && getTopLevelAncestor().isShowing();
 	}

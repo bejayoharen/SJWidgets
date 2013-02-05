@@ -29,7 +29,16 @@ import com.xowave.sjwidget.util.WidgetUtil;
 import com.xowave.util.StringShortener;
 
 /**
- * Like a simple uneditable combo box.
+ * A simple but useful widget that allows users to select one item from a menu of options. It is like a simple un-editable combo box in swing.
+ * Some toolkits call this kind of widget a "drop down selection menu" or a "pop-up selection" or something like that.
+ * 
+ * |---------|
+ * | mainID  |
+ * |----------|
+ * | labelID  | <-popupID
+ * | labelID  |
+ * | labelID  |
+ * |----------|
  * 
  * @author bjorn
  *
@@ -44,21 +53,37 @@ public class SJSelectionBox extends SJButton implements SJWidget, ListDataListen
 	private int additionalAmount;
 	private String realText;
 
+	/** Creates a new SJSelectionBox.
+	 * 
+	 * @param mainID the id of the label, which, when clicked on, exposes the items which can be selected.
+	 * @param popupID the id of the popup menu which appears when the label is clicked.
+	 * @param labelID the id of the individual items in the popup menu.
+	 * @param items the list of items to put in the menu. The first one is selected by default.
+	 * 
+	 * */
 	public SJSelectionBox(String mainID, String popupID, String labelID, Object[] items ) {
 		this( mainID, popupID, labelID, createListModel(items) );
 	}
-	
-	private static DefaultListModel createListModel(Object[] items) {
-		DefaultListModel model = new DefaultListModel();
-		for( Object item : items )
-			((DefaultListModel)model).addElement(item);
-		return model;
-	}
 
+	/** Creates a new SJSelectionBox.
+	 * 
+	 * @param mainID the id of the label, which, when clicked on, exposes the items which can be selected.
+	 * @param popupID the id of the popup menu which appears when the label is clicked.
+	 * @param labelID the id of the individual items in the popup menu.
+	 * 
+	 * */
 	public SJSelectionBox(String mainID, String popupID, String labelID ) {
 		this( mainID, popupID, labelID, new DefaultListModel() );
 	}
 	
+	/** Creates a new SJSelectionBox.
+	 * 
+	 * @param mainID the id of the label, which, when clicked on, exposes the items which can be selected.
+	 * @param popupID the id of the popup menu which appears when the label is clicked.
+	 * @param labelID the id of the individual items in the popup menu.
+	 * @param model the listModel used to define the items in this popup.
+	 * 
+	 * */
 	public SJSelectionBox(String mainID, String popupID, String labelID, ListModel model ) {
 		super(mainID);
 		popupMenu = new SJSelectionBoxPopup(popupID) {
@@ -82,13 +107,28 @@ public class SJSelectionBox extends SJButton implements SJWidget, ListDataListen
 		setupSelectionBox();
 	}
 	
+	private static DefaultListModel createListModel(Object[] items) {
+		DefaultListModel model = new DefaultListModel();
+		for( Object item : items )
+			((DefaultListModel)model).addElement(item);
+		return model;
+	}
+	
 	@Override
 	public void setFocusable( boolean focusable ) {
 		super.setFocusable( focusable );
 		if( popupMenu != null )
 			popupMenu.setFocusable( focusable );
 	}
-	
+	/**
+	 * Automatically reduces the text in the main label to fit inside the background icon of the 
+	 * main label. Note that the text is shortened using the string shortener; the font size is not reduced.
+	 * Once this is called, future calls to setText will change to enforce this shortening. Therefore,
+	 * getText() cannot be used to retrieve the previous result of setText()
+	 * 
+	 * @param reduce true if you want the string to be shortened to fit
+	 * @param additionalAmount additional space, in pixels, to leave if additional padding is required.
+	 */
 	public void setReduceTextToIconSize( boolean reduce, int additionalAmount ) {
 		this.reduceTextToIconSize = reduce;
 		this.additionalAmount = additionalAmount;
@@ -160,9 +200,13 @@ public class SJSelectionBox extends SJButton implements SJWidget, ListDataListen
 		popupMenu.validate();
 		popupMenu.repaint();
 	}
+	/**
+	 * @return the number of items in the current model.
+	 */
 	public int getItemCount() {
 		return model.getSize();
 	}
+	/** sets the currently selected index to the given value. */
 	public void setSelectedIndex( int i ) {
 		int old = selectedIndex;
 		selectedIndex = i;
@@ -171,7 +215,7 @@ public class SJSelectionBox extends SJButton implements SJWidget, ListDataListen
 		fireSelectedEvent( selectedIndex );
 		setupSelectionBox();
 	}
-	
+	/** sets the currently selected item to the given value. */
 	public void setSelectedItem( Object obj ) {
 		for( int i=0; i<model.getSize(); ++i ) {
 			if( model.getElementAt(i).equals(obj) ) {
@@ -180,11 +224,11 @@ public class SJSelectionBox extends SJButton implements SJWidget, ListDataListen
 			}
 		}
 	}
-	
+	/** returns the currently selected index. */
 	public int getSelectedIndex() {
 		return selectedIndex;
 	}
-	
+	/** returns the currently selected item. */
 	public Object getSelectedItem() {
 		if( selectedIndex >= 0 && selectedIndex < model.getSize() )
 			return model.getElementAt(selectedIndex);
@@ -230,6 +274,11 @@ public class SJSelectionBox extends SJButton implements SJWidget, ListDataListen
 		WidgetUtil.registerAndSetup(this, ID);
 		return this;
 	}
+	/**
+	 * returns the element at the given index.
+	 * @param i
+	 * @return
+	 */
 	public Object getItemAt(int i) {
 		return model.getElementAt(i);
 	}
@@ -237,24 +286,29 @@ public class SJSelectionBox extends SJButton implements SJWidget, ListDataListen
 	public Object[] getSelectedObjects() {
 		return new Object[] { model.getElementAt(selectedIndex) };
 	}
-
+	@Override
 	public void contentsChanged(ListDataEvent e) {
 		setupSelectionBox();
 	}
-
+	@Override
 	public void intervalAdded(ListDataEvent e) {
 		setupSelectionBox();
 	}
-
+	@Override
 	public void intervalRemoved(ListDataEvent e) {
 		setupSelectionBox();
 	}
-
+	/**
+	 * Call this to manually select the previous object in the list. Does not wrap.
+	 */
 	public void selectPrevious() {
 		if( getSelectedIndex() <= 0 )
 			return;
 		setSelectedIndex( getSelectedIndex() - 1 );
 	}
+	/**
+	 * Call this to manually select the next object in the list. Does not wrap.
+	 */
 	public void selectNext() {
 		if( getSelectedIndex() + 1 >= getItemCount() )
 			return;

@@ -21,7 +21,9 @@ import com.xowave.sjwidget.util.BackgroundPainter;
 import com.xowave.sjwidget.util.WidgetUtil;
 
 /**
- * Slightly more attractive progress bar.
+ * This is a progress bar that extends JProgressBar and, unline SJProgressBar, which is fresh code,
+ * has the same API. This is useful for converting existing code or where you want the UI to resemble
+ * the native or swing look as much as possible.
  *
  * @author bjorn
  *

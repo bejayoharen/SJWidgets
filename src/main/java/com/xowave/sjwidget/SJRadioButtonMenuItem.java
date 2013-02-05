@@ -16,10 +16,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
+import java.awt.event.InputEvent;
 import java.awt.geom.Ellipse2D;
 
-import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.JRadioButtonMenuItem;
 
@@ -28,6 +27,15 @@ import com.xowave.sjwidget.util.WidgetUtil;
 import com.xowave.util.UIUtil;
 import com.xowave.util.XColor;
 
+/**
+ * SJLabel is like a standard swing JLabel except that it allows you
+ * to set a widget ID (or assign one at construction).
+ * 
+ * This ID can be used to define features of the component, such as borders, background colors, icons and so on, in a separate XML file rather than code.
+ * 
+ * @author bjorn
+ *
+ */
 public class SJRadioButtonMenuItem extends JRadioButtonMenuItem implements SJWidget {
 	/** leave this many pixels on the left for icons like checkmarks and so on. */
 	public static int ICON_SPACE = 17 ;
@@ -46,18 +54,24 @@ public class SJRadioButtonMenuItem extends JRadioButtonMenuItem implements SJWid
 	BackgroundPainter backgroundPainter;
 	
 	
-	public SJRadioButtonMenuItem(String name) {
-		super(name);
-		setBorder( BorderFactory.createEmptyBorder(2,0,2,0) );
-		computeAllText();
-		setWidgetID(null);
-	}
-	public SJRadioButtonMenuItem(Action action) {
-		super(action);
-		setBorder( BorderFactory.createEmptyBorder(2,0,2,0) );
-		computeAllText();
-		setWidgetID(null);
-	}
+//	public SJRadioButtonMenuItem(String name) {
+//		super(name);
+//		setBorder( BorderFactory.createEmptyBorder(2,0,2,0) );
+//		computeAllText();
+//		setWidgetID(null);
+//	}
+//	public SJRadioButtonMenuItem(Action action) {
+//		super(action);
+//		setBorder( BorderFactory.createEmptyBorder(2,0,2,0) );
+//		computeAllText();
+//		setWidgetID(null);
+//	}
+	/**
+	 * Constructs a new SJRadioButtonMenuItem with the given name and ID.
+	 * 
+	 * @param name the text of the menu item (unless overwritten by the properties specified in the ID).
+	 * @param id the widget Id.
+	 */
 	public SJRadioButtonMenuItem(String name, String id) {
 		super(name);
 		setBorder( BorderFactory.createEmptyBorder(2,0,2,0) );
@@ -93,13 +107,13 @@ public class SJRadioButtonMenuItem extends JRadioButtonMenuItem implements SJWid
 		if( getAccelerator() != null ) {
 			keyShortcutText = new String(new char[] {(char)this.getAccelerator().getKeyCode()});
 			int mod = this.getAccelerator().getModifiers();
-			if( (mod & KeyEvent.META_DOWN_MASK) > 0 )
+			if( (mod & InputEvent.META_DOWN_MASK) > 0 )
 				keyShortcutText = '\u2318' + " " + keyShortcutText;
-			if( (mod & KeyEvent.CTRL_DOWN_MASK) > 0 )
+			if( (mod & InputEvent.CTRL_DOWN_MASK) > 0 )
 				keyShortcutText = '^' + " " + keyShortcutText;
-			if( (mod & KeyEvent.ALT_DOWN_MASK) > 0 )
+			if( (mod & InputEvent.ALT_DOWN_MASK) > 0 )
 				keyShortcutText = '\u2326' + " " + keyShortcutText;
-			if( (mod & KeyEvent.SHIFT_DOWN_MASK) > 0 )
+			if( (mod & InputEvent.SHIFT_DOWN_MASK) > 0 )
 				keyShortcutText = '\u8679' + " " + keyShortcutText;
 		} else {
 			keyShortcutText = null;
@@ -127,34 +141,36 @@ public class SJRadioButtonMenuItem extends JRadioButtonMenuItem implements SJWid
 	public Dimension getMinimumSize() {
 		return getPreferredSize();
 	}
+	@Override
 	public String getWidgetID() {
 		setOpaque( false );
 		return (String) this.getClientProperty(ID_KEY);
 	}
-	
 	@Override
 	public void setBackground( Color bg ) {
 		setOpaque( bg.getAlpha() == 255 );
 		super.setBackground(bg);
 	}
-	
+	@Override
 	public String getWidgetClass() {
 		return (String) this.getClientProperty(CLASS_KEY);
 	}
-
+	@Override
 	public SJRadioButtonMenuItem setWidgetID(String ID) {
 		WidgetUtil.registerAndSetup(this, ID);
 		return this;
 	}
-
+	@Override
 	public void setBackgroundPainter(BackgroundPainter bp) {
 		if( bp != null )
 			setOpaque(true);
 		backgroundPainter = bp;
 	}
+	@Override
 	public void setWidgetText(String text) {
 		this.putClientProperty(WIDGET_TEXT_KEY, text);
 	}
+	@Override
 	public String getWidgetText() {
 		return (String) this.getClientProperty(WIDGET_TEXT_KEY);
 	}

@@ -28,6 +28,14 @@ import com.xowave.sjwidget.util.BackgroundPainter;
 import com.xowave.util.UIUtil;
 import com.xowave.util.XColor;
 
+/**
+ * This class does the drawing and size computations for SJMenu and SJMenuItem.
+ * There are quite a few constants and other behaviors here which should be overrideable but
+ * which, at present, are not.
+ * 
+ * @author bjorn
+ *
+ */
 class SJMenuPaintingDelegate {
 	/** leave this many pixels on the left for icons like check-marks and so on. */
 	public static int LEFT_ICON_SPACE = 10 ;
@@ -47,12 +55,12 @@ class SJMenuPaintingDelegate {
 	private String keyShortcutText = null;
 	private final JMenuItem item;
 
-	public SJMenuPaintingDelegate(JMenuItem item) {
+	SJMenuPaintingDelegate(JMenuItem item) {
 		this.item = item;
 		item.setBorder( BorderFactory.createEmptyBorder(2,0,2,0) );
 		computeAllText();
 	}
-	public void paintComponentHelper(Graphics gg) {
+	void paintComponentHelper(Graphics gg) {
 		Graphics2D g = (Graphics2D) gg;
 		Color f = item.getForeground();
 		Color b = item.getBackground();
@@ -123,22 +131,22 @@ class SJMenuPaintingDelegate {
 			width += icn.getIconWidth() + RIGHT_ICON_SPACE;
 	}
 	
-	public Dimension getPreferredSize() {
+	Dimension getPreferredSize() {
 		Insets insets = item.getInsets();
 		computeAllText();
 		FontMetrics fm = item.getFontMetrics( item.getFont() );
 		int height = Math.max( fm.getHeight(), ICON_HEIGHT ) + insets.top + insets.bottom;
 		return new Dimension( width, height );
 	}
-	public Dimension getMaximumSize() {
+	Dimension getMaximumSize() {
 		Dimension d = getPreferredSize();
 		d.width = Integer.MAX_VALUE;
 		return d;
 	}
-	public Dimension getMinimumSize() {
+	Dimension getMinimumSize() {
 		return getPreferredSize();
 	}
-	public void setBackgroundPainter(BackgroundPainter bp) {
+	void setBackgroundPainter(BackgroundPainter bp) {
 		//No op for now.
 	}
 }

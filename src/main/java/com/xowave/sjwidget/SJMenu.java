@@ -34,6 +34,11 @@ import com.xowave.sjwidget.util.WidgetUtil;
 import com.xowave.util.Environment;
 
 /**
+ * SJMenu is like a standard swing JLabel except that it allows you
+ * to set several widget IDs at construction time.
+ * 
+ * These IDs can be used to define features of the component, such as borders, background colors, icons and so on, in a separate XML file rather than code.
+ * 
  * @author bjorn
  *
  */
@@ -42,6 +47,21 @@ public class SJMenu extends JMenu implements SJWidget {
 	private final String itemID;
 	private final SJMenuPaintingDelegate delegate;
 
+	/**
+	 * Constructs a new SJMenu.
+	 * 
+	 * |---------|---------|
+	 * | labelID | itemID  |
+	 * |---------| itemID  |
+	 *           | itemID  |
+	 *   menuID->| itemID  |
+	 *           |---------|
+	 * 
+	 * @param name the name of the menu. This is the text of the menu label.
+	 * @param labelID This is the ID of the menu button (ie, what is shown by default before anything is clicked).
+	 * @param menuID This is the ID of the list of items that shows when you click the menu button.
+	 * @param itemID This is the ID of the items themselves.
+	 */
 	public SJMenu(String name, String labelID, String menuID, String itemID ) {
 		super(name);
 		setWidgetID( labelID );

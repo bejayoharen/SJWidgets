@@ -37,14 +37,17 @@ public class SJLabel extends JLabel implements SJWidget {
 	private BackgroundPainter backgroundPainter;
 
 	/**
-	 * 
+	 * Like the equivalent JLabel Constructor with an additional argument: ID, which sets the widget ID.
+	 * @param ID the widget ID
 	 */
 	public SJLabel(String id) {
 		setWidgetID(id);
 	}
 
 	/**
-	 * @param text
+	 * Like the equivalent JLabel Constructor with an additional argument: ID, which sets the widget ID.
+	 * @param text the label text, which is set before the ID
+	 * @param ID the widget ID
 	 */
 	public SJLabel(String text, String id) {
 		super(text);
@@ -53,17 +56,21 @@ public class SJLabel extends JLabel implements SJWidget {
 	}
 
 	/**
-	 * @param image
+	 * Like the equivalent JLabel Constructor with an additional argument: ID, which sets the widget ID.
+	 * @param icon the label icon
+	 * @param ID the widget ID
 	 */
-	public SJLabel(Icon image, String id) {
-		super(image);
+	public SJLabel(Icon icon, String id) {
+		super(icon);
 		setWidgetID(id);
-		setIcon(image);
+		setIcon(icon);
 	}
 
 	/**
-	 * @param text
-	 * @param horizontalAlignment
+	 * Like the equivalent JLabel Constructor with an additional argument: ID, which sets the widget ID.
+	 * @param text the label text, which is set before the ID
+	 * @param the horizantalAlignment property, which is set before the ID
+	 * @param ID the widget ID
 	 */
 	public SJLabel(String text, int horizontalAlignment, String id) {
 		super(text, horizontalAlignment);
@@ -71,18 +78,22 @@ public class SJLabel extends JLabel implements SJWidget {
 	}
 
 	/**
-	 * @param image
-	 * @param horizontalAlignment
+	 * Like the equivalent JLabel Constructor with an additional argument: ID, which sets the widget ID.
+	 * @param icon the label icon, which is set before the ID
+	 * @param the horizantalAlignment property, which is set before the ID
+	 * @param ID the widget ID
 	 */
-	public SJLabel(Icon image, int horizontalAlignment, String id) {
-		super(image, horizontalAlignment);
+	public SJLabel(Icon icon, int horizontalAlignment, String id) {
+		super(icon, horizontalAlignment);
 		setWidgetID(id);
 	}
 
 	/**
-	 * @param text
-	 * @param icon
-	 * @param horizontalAlignment
+	 * Like the equivalent JLabel Constructor with an additional argument: ID, which sets the widget ID.
+	 * @param text the label text, which is set before the ID
+	 * @param icon the label icon, which is set before the ID
+	 * @param the horizantalAlignment property, which is set before the ID
+	 * @param ID the widget ID
 	 */
 	public SJLabel(String text, Icon icon, int horizontalAlignment, String id) {
 		super(text, icon, horizontalAlignment);

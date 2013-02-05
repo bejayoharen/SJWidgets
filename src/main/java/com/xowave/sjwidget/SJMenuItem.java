@@ -21,14 +21,36 @@ import javax.swing.JMenuItem;
 import com.xowave.sjwidget.util.BackgroundPainter;
 import com.xowave.sjwidget.util.WidgetUtil;
 
+/**
+ * SJLabel is like a standard swing JLabel except that it allows you
+ * to set a widget ID (or assign one at construction).
+ * 
+ * This ID can be used to define features of the component, such as borders, background colors, icons and so on, in a separate XML file rather than code.
+ * 
+ * Note, that at the moment a lot of drawing decisions, such as where to annotate the keyboard shortcuts, are made programatically rather than in code,
+ * so more work still needs to be done.
+ * 
+ * @author bjorn
+ *
+ */
 public class SJMenuItem extends JMenuItem implements SJWidget {
 	private final SJMenuPaintingDelegate delegate;
 
+	/**
+	 * Like the equivalent JMenuItem constructor with an additional argument: ID, which sets the widget ID.
+	 * @param action action which manages this MenuItem
+	 * @param ID the widget ID
+	 */
 	public SJMenuItem(Action action, String id) {
 		super(action);
 		delegate = new SJMenuPaintingDelegate(this);
 		setWidgetID(id);
 	}
+	/**
+	 * Like the equivalent JMenuItem constructor with an additional argument: ID, which sets the widget ID.
+	 * @param name the name of this item. Displayed as the default text unless overwritten by the ID.
+	 * @param ID the widget ID
+	 */
 	public SJMenuItem(String name, String id) {
 		super(name);
 		delegate = new SJMenuPaintingDelegate(this);

@@ -21,14 +21,14 @@ have significant design collatoral and/or tweaking of individual widgets, rather
 widget types.
 
 
-#Where are SJTable and SJList?#
+#Where are SJTable? #
 
 It may seem like you should be able to create an SJTable the same way you can create an
-SJButton. As it so happens, JTable and JList don't do their own rendering. Rather, they delegate
+SJButton. As it so happens, JTables don't do their own rendering. Rather, they delegate
 their rendering to other components. As a result, it is not necessary to subclass JTable
 in SJWidgets -- you can use JTable directly. For an example of how this is done, see
 com.xowave.sjwidget.examples.TableExample. The same methods can be used for changing the
-rendering (and editing) of JList data.
+rendering (and editing) of JList data, although an SJList widget is provided.
 
 
 #Why are the examples so ugly? I thought SJWidgets was supposed to be pretty!#

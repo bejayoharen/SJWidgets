@@ -18,8 +18,12 @@ import com.xowave.sjwidget.util.BackgroundPainter;
 import com.xowave.sjwidget.util.WidgetUtil;
 
 /**
- * Extends Scrollbars.
+ * SJScrollBar is like a standard swing JScrollBar except that it allows you
+ * to set a widget ID (or assign one at construction).
  * 
+ * This ID can be used to define features of the component, such as borders, background colors, icons and so on, in a separate XML file rather than code.
+ * 
+ * @todo Need to review how much of this actually works. eg can I set forground/background/borders/etc?
  * @author bjorn
  *
  */

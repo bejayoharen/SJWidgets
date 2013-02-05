@@ -27,6 +27,11 @@ import com.xowave.sjwidget.util.BackgroundPainter;
 import com.xowave.sjwidget.util.WidgetUtil;
 
 /**
+ * SJRadioButton is like a standard swing JRadioButton except that it allows you
+ * to set a widget ID (or assign one at construction).
+ * 
+ * This ID can be used to define features of the component, such as borders, background colors, icons and so on, in a separate XML file rather than code.
+ * 
  * @author bjorn
  *
  */
@@ -34,14 +39,17 @@ public class SJRadioButton extends JRadioButton implements SJWidget, PropertyCha
 	private BackgroundPainter backgroundPainter;
 	
 	/**
-	 * 
+	 * Like the equivalent JLabel Constructor with an additional argument: ID, which sets the widget ID.
+	 * @param ID the widget ID
 	 */
 	public SJRadioButton(String ID) {
 		setWidgetID( ID );
 	}
 
 	/**
-	 * @param icon
+	 * Like the equivalent JLabel Constructor with an additional argument: ID, which sets the widget ID.
+	 * @param icon the icon. Set before the ID.
+	 * @param ID the widget ID
 	 */
 	public SJRadioButton(Icon icon, String ID) {
 		super(icon);
@@ -49,7 +57,9 @@ public class SJRadioButton extends JRadioButton implements SJWidget, PropertyCha
 	}
 
 	/**
-	 * @param text
+	 * Like the equivalent JLabel Constructor with an additional argument: ID, which sets the widget ID.
+	 * @param text the text. Set before the ID.
+	 * @param ID the widget ID
 	 */
 	public SJRadioButton(String text, String ID) {
 		super(text);
@@ -57,13 +67,18 @@ public class SJRadioButton extends JRadioButton implements SJWidget, PropertyCha
 	}
 
 	/**
-	 * @param a
+	 * Like the equivalent JLabel Constructor with an additional argument: ID, which sets the widget ID.
+	 * @param a the action. Set before the ID.
+	 * @param ID the widget ID
 	 */
 	public SJRadioButton(Action a, String ID) {
 		super(a);
 		setWidgetID( ID );
 	}
-	
+	/**
+	 * Like the equivalent JLabel Constructor with an additional argument: ID, which sets the widget ID.
+	 * @param a the SJAction. The ID is retrieved from this and monitored in case of changes.
+	 */
 	public SJRadioButton(SJAction a) {
 		super(a);
 		setWidgetID( a.getWidgetID() );
@@ -71,27 +86,24 @@ public class SJRadioButton extends JRadioButton implements SJWidget, PropertyCha
 	}
 
 	/**
-	 * @param text
-	 * @param icon
+	 * Like the equivalent JLabel Constructor with an additional argument: ID, which sets the widget ID.
+	 * @param text the text. Set before the ID.
+	 * @param icon the icon. Set before the ID.
+	 * @param a the SJAction. The ID is retrieved from this and monitored in case of changes.
 	 */
-	public SJRadioButton(String text, Icon icon, String ID, HelpComponentRegistry hcr) {
-		super(text, icon);
-		setWidgetID( ID );
-	}
-
 	public SJRadioButton(String text, Icon icon, String ID) {
 		super(text, icon);
 		setWidgetID( ID );
 	}
-
+	@Override
 	public String getWidgetID() {
 		return (String) this.getClientProperty(ID_KEY);
 	}
-	
+	@Override
 	public String getWidgetClass() {
 		return (String) this.getClientProperty(CLASS_KEY);
 	}
-
+	@Override
 	public SJRadioButton setWidgetID(String ID) {
 		setFocusable( WidgetUtil.allowFocus() );
 		setBackground( TRANSPARENT );
@@ -108,7 +120,7 @@ public class SJRadioButton extends JRadioButton implements SJWidget, PropertyCha
 		}
 	}
 	
-	boolean pressedIconSet = false;
+	private boolean pressedIconSet = false;
 	@Override
 	public void setPressedIcon( Icon icn ) {
 		super.setPressedIcon(icn);
@@ -136,17 +148,19 @@ public class SJRadioButton extends JRadioButton implements SJWidget, PropertyCha
 		}
 	}
 
+	@Override
 	public void setBackgroundPainter(BackgroundPainter bp) {
 		backgroundPainter = bp;
 	}
-	
+	@Override	
 	public void setWidgetText(String text) {
 		this.putClientProperty(WIDGET_TEXT_KEY, text);
 	}
+	@Override
 	public String getWidgetText() {
 		return (String) this.getClientProperty(WIDGET_TEXT_KEY);
 	}
-
+	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		setWidgetID( ((SJAction)getAction()).getWidgetID() );
 	}
