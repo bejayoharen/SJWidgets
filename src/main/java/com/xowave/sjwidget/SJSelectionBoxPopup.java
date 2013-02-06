@@ -41,6 +41,8 @@ import com.xowave.util.GlobalEventManager;
 
 
 /**
+ * This implements the actual popup menu used by SJSelectionBox.
+ * 
  * @author bjorn
  *
  */
@@ -49,6 +51,7 @@ class SJSelectionBoxPopup extends SJPanel implements WindowListener, ActionListe
 	private SJSelectionBox selectionBox;
 	private SJScrollPane scroller;
 
+	/** creates a new SJSelectionBoxPopup with the given widget ID */
 	public SJSelectionBoxPopup(String id) {
 		super( null, id );
 		setFocusTraversalKeysEnabled(false);
@@ -103,6 +106,7 @@ class SJSelectionBoxPopup extends SJPanel implements WindowListener, ActionListe
 		});
 	}
 
+	/** Shows the popup using the given items as hints for layout. selBox is also used to assure that the selected item is shown. */
 	public void show( SJSelectionBox selBox, Component parent ) {
 		// we can't use regular pop-ups, b/c they don't support focus.
 		// create our window:
@@ -170,13 +174,16 @@ class SJSelectionBoxPopup extends SJPanel implements WindowListener, ActionListe
 		if( s != null )
 			s.addWindowListener( this );
 	}
+	/** adds the given item to the menu */
 	public void add( JMenuItem mi ) {
 		super.add(mi);
 		mi.addActionListener(this);
 	}
+	/** adds a separator to the menu */
 	public void insertSeparator() {
 		add( new Separator() );
 	}
+	/** adds a separator to the menu in the requested location */
 	public void insertSeparator(int index) {
 		add( new Separator(), index );
 	}
