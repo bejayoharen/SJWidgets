@@ -180,7 +180,7 @@ You can also just look at some <a href="doc/SCREENSHOTS.md">screenshots</a>
 
 #FAQ#
 
-Got a question? Maybe we have an answer in the <a ref="doc/FAQ.md">FAQ</a>.
+Got a question? Maybe we have an answer in the <a href="doc/FAQ.md">FAQ</a>.
 
 #Contributors#
 
