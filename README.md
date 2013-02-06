@@ -141,7 +141,7 @@ Once you are setup, you can start to define some widgets. Here are some examples
 
 For properties that are repeated in multiple widget IDs, it is possible to use a "class", which is not yet documented.
 
-Properties are documented in doc/PROPERTIES.md
+Properties are documented in <a href="doc/PROPERTIES.md">doc/PROPERTIES.md</a>
 
 #Java Code#
 
@@ -172,10 +172,15 @@ To build and run the table test, use:
 mvn compile exec:exec -Dtabletest
 
 
-#Examples#
+#Examples and screenshots#
 
 An earlier version of SJWidgets was used in Indaba Music's Mantis: http://www.indabamusic.com/labs
 The current version will be used in the upcoming version of http://www.xonami.com
+You can also just look at some <a href="doc/SCREENSHOTS.md">screenshots</a>
+
+#FAQ#
+
+Got a question? Maybe we have an answer in the <a ref="doc/FAQ.md">FAQ</a>.
 
 #Contributors#
 
